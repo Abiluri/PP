@@ -21,7 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS `users` (
+                CREATE TABLE IF NOT EXISTS `pp_1_1_3-4`.`users` (
                   `id` INT NOT NULL AUTO_INCREMENT,
                   `name` VARCHAR(45) NULL,
                   `lastName` VARCHAR(45) NULL,
@@ -33,13 +33,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String sql = "DROP TABLE IF EXISTS `users`";
+        String sql = "DROP TABLE IF EXISTS `pp_1_1_3-4`.`users`";
         sqlS(sql);
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        String sql = "INSERT INTO `users` (name, lastName, age) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO `pp_1_1_3-4`.`users` (name, lastName, age) VALUES (?, ?, ?)";
 
         try (Connection conn = Util.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -56,13 +56,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        String sql = "DELETE FROM `users` WHERE id = " + id;
+        String sql = "DELETE FROM `pp_1_1_3-4`.`users` WHERE id = " + id;
         sqlS(sql);
     }
 
     @Override
     public List<User> getAllUsers() {
-        String sql = "SELECT * FROM `users`";
+        String sql = "SELECT * FROM `pp_1_1_3-4`.`users`";
         List<User> users = new ArrayList<>();
 
         try (Connection conn = Util.getConnection();
@@ -87,7 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String sql = "DELETE FROM `users`";
+        String sql = "DELETE FROM `pp_1_1_3-4`.`users`";
         sqlS(sql);
     }
 }
