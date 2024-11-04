@@ -69,10 +69,7 @@ public class User {
             return false;
         }
         final User other = (User) obj;
-        if ((!Objects.equals(this.id, other.id)) || (!Objects.equals(this.name, other.name)) | (!Objects.equals(this.lastName, other.lastName)) | (!Objects.equals(this.age, other.age))) {
-            return false;
-        }
-        return true;
+        return (Objects.equals(this.id, other.id)) && !((!Objects.equals(this.name, other.name)) | (!Objects.equals(this.lastName, other.lastName)) | (!Objects.equals(this.age, other.age)));
     }
 
     @Override
