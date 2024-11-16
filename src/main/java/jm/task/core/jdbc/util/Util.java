@@ -16,6 +16,7 @@ public class Util {
     private static final String PASSWORD = "root";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String NAME = "`pp_1_1_3-4`.`users`";
+    private static final String HIBERNATE_NAME = "User";
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
     public static Connection getConnection() throws SQLException {
@@ -63,4 +64,7 @@ public class Util {
         getSessionFactory().close();
     }
 
+    public static String getHibernateName() {
+        return HIBERNATE_NAME;
+    }
 }
