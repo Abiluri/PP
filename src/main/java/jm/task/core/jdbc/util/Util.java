@@ -11,12 +11,12 @@ import java.sql.SQLException;
 
 public class Util {
     // реализуйте настройку соеденения с БД
-    private static final String URL = "jdbc:mysql://localhost:3306/";
+    private static final String URL = "jdbc:mysql://localhost:3306/pp_1_1_3-4";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String NAME = "`pp_1_1_3-4`.`users`";
-    private static final String HIBERNATE_NAME = "User";
+    private static final String NAME = "users";
+    private static final String HIBERNATE_NAME = "users";
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
     public static Connection getConnection() throws SQLException {

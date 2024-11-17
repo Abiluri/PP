@@ -14,16 +14,17 @@ public class UserDaoHibernateImpl implements UserDao {
 
     }
 
-
     @Override
     public void createUsersTable() {
         String sql = """
-                CREATE TABLE IF NOT EXISTS `pp_1_1_3-4`.`users` (
-                  `id` INT NOT NULL AUTO_INCREMENT,
-                  `name` VARCHAR(45) NULL,
-                  `lastName` VARCHAR(45) NULL,
-                  `age` INT NULL,
-                  PRIMARY KEY (`id`))
+                CREATE TABLE IF NOT EXISTS users (
+                  id INT NOT NULL AUTO_INCREMENT,
+                  name VARCHAR(45) NULL,
+                  lastName VARCHAR(45) NULL,
+                  age INT NULL,
+                  PRIMARY KEY (id))
+                ENGINE = InnoDB
+                DEFAULT CHARACTER SET = utf8;
                 """;
         try (Session session = Util.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
@@ -37,7 +38,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String sql = "DROP TABLE IF EXISTS `pp_1_1_3-4`.`users`";
+        String sql = "DROP TABLE IF EXISTS users";
         try (Session session = Util.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             NativeQuery<?> query = session.createSQLQuery(sql);
@@ -51,8 +52,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try {
-            Session session = Util.getSessionFactory().openSession();
+        try (Session session = Util.getSessionFactory().openSession()) {
             session.beginTransaction();
             User user = new User();
             user.setName(name);
@@ -85,8 +85,6 @@ public class UserDaoHibernateImpl implements UserDao {
         } finally {
             session.close();
         }
-        //String sql = "DELETE FROM `pp_1_1_3-4`.`users` WHERE id = " + id;
-
     }
 
     @Override
